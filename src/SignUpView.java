@@ -135,8 +135,9 @@ public class SignUpView extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         JLabel registerLabel = new JLabel("Register");
+        registerLabel.setPreferredSize(new Dimension(100, 95));
         registerLabel.setFont(new Font("Serif", Font.PLAIN, 30));
-        registerLabel.setForeground(Color.white);
+        registerLabel.setForeground(Color.BLACK);
         registerLabel.setBackground(Color.BLUE);
         registerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -146,8 +147,10 @@ public class SignUpView extends JFrame {
         JPanel panel2 = new JPanel();
         //panel.setBounds(530, 750, 390, 50);
         panel2.setLayout(new GridLayout(1, 2));
+        panel2.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         JLabel accountAlready = new JLabel("Already have an account?");
+        accountAlready.setPreferredSize(new Dimension(100, 150));
         accountAlready.setHorizontalAlignment(0);
         accountAlready.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
