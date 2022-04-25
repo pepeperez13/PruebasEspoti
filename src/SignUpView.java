@@ -23,12 +23,12 @@ public class SignUpView extends JFrame {
         setSize(1500, 900);
         setResizable(false);
 
-        setLayout(new BorderLayout(600, 50));
+        setLayout(new BorderLayout(0, 50));
 
         add(setLogo(), BorderLayout.NORTH);
         add(introduceInfoPanel(), BorderLayout.CENTER);
-        add(setRegisterButton(), BorderLayout.SOUTH);
-        add(setAccountAlready(), BorderLayout.SOUTH);
+        add(setEndButtons(), BorderLayout.SOUTH);
+        //add(setAccountAlready(), BorderLayout.SOUTH);
 
         // Añadimos fondo
         JImagePanel j = new JImagePanel("images/background.jpeg");
@@ -39,7 +39,7 @@ public class SignUpView extends JFrame {
     private JLabel setLogo () {
         ImageIcon logoImage = new ImageIcon("images/spotiLogo.png");
         Image image = logoImage.getImage();
-        image = image.getScaledInstance(180, 180, Image.SCALE_DEFAULT);
+        image = image.getScaledInstance(150, 150, Image.SCALE_DEFAULT);
         logoImage = new ImageIcon(image);
         JLabel logoImageLabel = new JLabel(logoImage);
         //logoImageLabel.setBounds(480, 10, 500, 120);
@@ -88,8 +88,8 @@ public class SignUpView extends JFrame {
 
     private JPanel setLabelAndField(String label, String tField) {
         JPanel panel = new JPanel();
-        panel.setSize(new Dimension(450, 100));
-        //panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        //panel.setSize(new Dimension(450, 100));
+        //panel.setLayout(new GridLayout(2, 1));
 
         JLabel labelText = new JLabel(label);
         labelText.setPreferredSize(new Dimension(300, 20));
@@ -129,26 +129,23 @@ public class SignUpView extends JFrame {
         return panel;
     }
 
-    public JPanel setRegisterButton () {
+    public JPanel setEndButtons () {
         JPanel panel = new JPanel();
-        panel.setBounds(550, 650, 330, 70);
-        panel.setBackground(Color.blue);
+        //panel.setBounds(550, 650, 330, 70);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JLabel labelText = new JLabel("\nRegister");
-        labelText.setFont(new Font("Serif", Font.PLAIN, 30));
-        labelText.setForeground(Color.white);
-        labelText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel registerLabel = new JLabel("Register");
+        registerLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+        registerLabel.setForeground(Color.white);
+        registerLabel.setBackground(Color.BLUE);
+        registerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        labelText.addMouseListener(controller);
+        registerLabel.addMouseListener(controller);
+        panel.add(registerLabel);
 
-        panel.add(labelText);
-        return panel;
-    }
-
-    public JPanel setAccountAlready () {
-        JPanel panel = new JPanel();
-        panel.setBounds(530, 750, 390, 50);
-        panel.setLayout(new GridLayout(1, 2));
+        JPanel panel2 = new JPanel();
+        //panel.setBounds(530, 750, 390, 50);
+        panel2.setLayout(new GridLayout(1, 2));
 
         JLabel accountAlready = new JLabel("Already have an account?");
         accountAlready.setHorizontalAlignment(0);
@@ -159,10 +156,31 @@ public class SignUpView extends JFrame {
         login.setFont(new Font("Tahoma", Font.BOLD, 16));
         login.addMouseListener(controller);
 
-        panel.add(accountAlready);
-        panel.add(login);
+        panel2.add(accountAlready);
+        panel2.add(login);
 
+        panel.add(panel2);
         return panel;
+    }
+
+    public JPanel setAccountAlready () {
+        JPanel panael2 = new JPanel();
+        //panel.setBounds(530, 750, 390, 50);
+        panael2.setLayout(new GridLayout(1, 2));
+
+        JLabel accountAlready = new JLabel("Already have an account?");
+        accountAlready.setHorizontalAlignment(0);
+        accountAlready.setFont(new Font("Tahoma", Font.PLAIN, 16));
+
+        JLabel login = new JLabel("Log in");
+        login.setHorizontalAlignment(0);
+        login.setFont(new Font("Tahoma", Font.BOLD, 16));
+        login.addMouseListener(controller);
+
+        panael2.add(accountAlready);
+        panael2.add(login);
+
+        return panael2;
     }
 
     public void paint (Graphics g) {
