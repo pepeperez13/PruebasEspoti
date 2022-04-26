@@ -134,15 +134,13 @@ public class SignUpView extends JFrame {
         //panel.setBounds(550, 650, 330, 70);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JLabel registerLabel = new JLabel("Register");
-        registerLabel.setPreferredSize(new Dimension(100, 95));
-        registerLabel.setFont(new Font("Serif", Font.PLAIN, 30));
-        registerLabel.setForeground(Color.BLACK);
-        registerLabel.setBackground(Color.BLUE);
-        registerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        registerLabel.addMouseListener(controller);
-        panel.add(registerLabel);
+        JButton registerButton = new JButton("         Register         ");
+        registerButton.setPreferredSize(new Dimension(100, 60));
+        registerButton.setFont(new Font("Tahoma", Font.BOLD, 22));
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        registerButton.setBackground(new Color(52, 166, 244));
+        registerButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        panel.add(registerButton);
 
         JPanel panel2 = new JPanel();
         //panel.setBounds(530, 750, 390, 50);
@@ -151,11 +149,11 @@ public class SignUpView extends JFrame {
 
         JLabel accountAlready = new JLabel("Already have an account?");
         accountAlready.setPreferredSize(new Dimension(100, 150));
-        accountAlready.setHorizontalAlignment(0);
+        accountAlready.setHorizontalAlignment(JLabel.RIGHT);
         accountAlready.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-        JLabel login = new JLabel("Log in");
-        login.setHorizontalAlignment(0);
+        JLabel login = new JLabel("       Log in");
+        login.setHorizontalAlignment(JLabel.LEFT);
         login.setFont(new Font("Tahoma", Font.BOLD, 16));
         login.addMouseListener(controller);
 
@@ -164,26 +162,6 @@ public class SignUpView extends JFrame {
 
         panel.add(panel2);
         return panel;
-    }
-
-    public JPanel setAccountAlready () {
-        JPanel panael2 = new JPanel();
-        //panel.setBounds(530, 750, 390, 50);
-        panael2.setLayout(new GridLayout(1, 2));
-
-        JLabel accountAlready = new JLabel("Already have an account?");
-        accountAlready.setHorizontalAlignment(0);
-        accountAlready.setFont(new Font("Tahoma", Font.PLAIN, 16));
-
-        JLabel login = new JLabel("Log in");
-        login.setHorizontalAlignment(0);
-        login.setFont(new Font("Tahoma", Font.BOLD, 16));
-        login.addMouseListener(controller);
-
-        panael2.add(accountAlready);
-        panael2.add(login);
-
-        return panael2;
     }
 
     public void paint (Graphics g) {
@@ -196,11 +174,11 @@ public class SignUpView extends JFrame {
 
 
         // Lineas inferiores izd
-        g.drawLine(59, 700, 525, 700);
-        g.drawLine(59, 701, 525, 701);
+        g.drawLine(59, 715, 540, 715);
+        g.drawLine(59, 716, 540, 716);
         // Lineas inferiores dcha
-        g.drawLine(925, 700, 1425, 700);
-        g.drawLine(925, 701, 1425, 701);
+        g.drawLine(925, 715, 1425, 715);
+        g.drawLine(925, 716, 1425, 716);
 
     }
 
