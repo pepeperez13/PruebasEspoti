@@ -4,13 +4,19 @@ import java.time.Duration;
 
 public class DetailedSongView extends JFrame {
 
+    private static final String ADD_TO_PLAYLIST_COMMAND = "ADD_TO_PLAYLIST_COMMAND";
+    private static final String PLAY_SONG_COMMAND = "PLAY_SONG_COMMAND";
+    private static final String PAUSE_SONG_COMMAND = "PAUSE_SONG_COMMAND";
+    private DetailedSongController controller;
+
 
     public DetailedSongView () {
-        setLocationRelativeTo(null);
+        controller = new DetailedSongController(this);
+        setLocation(0,10);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setSize(1500, 900);
-        setResizable(false);
+        setResizable(true);
 
         setLayout(new BorderLayout(0, 50));
 
@@ -42,6 +48,7 @@ public class DetailedSongView extends JFrame {
         generalPanel.add(setInfoPanel("Owner", owner));
         generalPanel.add(setInfoPanel("Duration", duration));
         generalPanel.add(setLyricsPanel());
+        generalPanel.add(setInteractionsPanel());
 
 
         return generalPanel;
@@ -51,10 +58,10 @@ public class DetailedSongView extends JFrame {
         JPanel panel = new JPanel(new GridLayout(1, 2));
         JLabel generalTitle = new JLabel(title);
         generalTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-        generalTitle.setHorizontalAlignment(JLabel.RIGHT);
+        generalTitle.setHorizontalAlignment(JLabel.CENTER);
         JLabel specificLabel = new JLabel(content);
         specificLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        specificLabel.setHorizontalAlignment(JLabel.CENTER);
+        specificLabel.setHorizontalAlignment(JLabel.LEFT);
         panel.add(generalTitle);
         panel.add(specificLabel);
 
@@ -66,7 +73,7 @@ public class DetailedSongView extends JFrame {
 
         JLabel generalTitle = new JLabel("Lyrics");
         generalTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-        generalTitle.setHorizontalAlignment(JLabel.RIGHT);
+        generalTitle.setHorizontalAlignment(JLabel.CENTER);
 
         JTextArea textArea = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -81,30 +88,67 @@ public class DetailedSongView extends JFrame {
         return lyricsPanel;
     }
 
-    /*private JPanel setInteractionsPanel () {
+    private JPanel setInteractionsPanel () {
 
-    }*/
+        JPanel generalPanel = new JPanel();
+        generalPanel.setLayout(new BoxLayout(generalPanel, BoxLayout.Y_AXIS));
 
-    private JPanel setCloseLabel () {
-        JPanel exitPanel = new JPanel();
-        exitPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        exitPanel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+        JButton playlistButton = new JButton("         Add to playlist         ");
+        playlistButton.setPreferredSize(new Dimension(100, 60));
+        playlistButton.setFont(new Font("Tahoma", Font.BOLD, 22));
+        playlistButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playlistButton.setBackground(new Color(52, 166, 244));
+        playlistButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        playlistButton.setFocusable(false);
+        playlistButton.setActionCommand(ADD_TO_PLAYLIST_COMMAND);
+        playlistButton.addActionListener(controller);
 
-        JLabel closeWindow = new JLabel("Close Song Info");
-        closeWindow.setFont(new Font("Tahoma", Font.PLAIN, 36));
+        generalPanel.add(playlistButton);
 
-        ImageIcon crossImage = new ImageIcon("images/cruz.png");
-        Image image = crossImage.getImage();
-        image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        crossImage = new ImageIcon(image);
-        JLabel crossImageLabel = new JLabel(crossImage);
+        JPanel playPanel = new JPanel();
+        playPanel.setLayout(new GridLayout(1, 2));
 
-        exitPanel.add(closeWindow, gbc);
-        exitPanel.add(crossImageLabel, gbc);
+        JButton playButton = new JButton("         Play         ");
+        playButton.setPreferredSize(new Dimension(100, 60));
+        playButton.setFont(new Font("Tahoma", Font.BOLD, 22));
+        playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        playButton.setBackground(Color.GREEN);
+        playButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        playButton.setFocusable(false);
+        playButton.setActionCommand(PLAY_SONG_COMMAND);
+        playButton.addActionListener(controller);
 
-        return exitPanel;
+        JButton pauseButton = new JButton("         Pause         ");
+        pauseButton.setPreferredSize(new Dimension(100, 60));
+        pauseButton.setFont(new Font("Tahoma", Font.BOLD, 22));
+        pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        pauseButton.setBackground(Color.RED);
+        pauseButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        pauseButton.setFocusable(false);
+        pauseButton.setActionCommand(PAUSE_SONG_COMMAND);
+        pauseButton.addActionListener(controller);
+
+
+        playPanel.add(playButton);
+        playPanel.add(pauseButton);
+
+        generalPanel.add(playPanel);
+
+        return generalPanel;
     }
 
+    private JButton setCloseLabel () {
+        
+        JButton exitButton= new JButton("Close song info");
+        exitButton.setFont(new Font("Tahoma", Font.BOLD, 22));
+        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        exitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+        exitButton.setBackground(Color.GRAY);
+        exitButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        exitButton.setFocusable(false);
+        exitButton.setActionCommand(PLAY_SONG_COMMAND);
+        exitButton.addActionListener(controller);
+
+        return exitButton;
+    }
 }
